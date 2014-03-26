@@ -42,7 +42,7 @@ def parse_cmd_args():
 
     return parser.parse_args()
 
-def extractASN(url):
+def extract_asn(url):
     """
     Extract the ASN from the following URL:
     <a href='https://stat.ripe.net/AS5719' target='_blank'>5719</a>
@@ -96,7 +96,7 @@ def main(area, count, file_name=None):
 
         # Group all remaining probes by their ASNv4.
         if "IPv4 ASN" in probe_info:
-            asnv4 = extractASN(probe_info[3])
+            asnv4 = extract_asn(probe_info[3])
 
         if not relevant_probes.has_key(asnv4):
             relevant_probes[asnv4] = [probe]
