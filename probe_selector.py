@@ -91,7 +91,7 @@ def main(area, count, file_name=None):
 
         # Skip probes which are not in our desired region.
         country_code = probe_info[probe_info.index("Country Code") + 1]
-        if country_code.lower() != area.lower():
+        if area.lower() != "ww" and (country_code.lower() != area.lower()):
             continue
 
         # Group all remaining probes by their ASNv4.
@@ -102,7 +102,6 @@ def main(area, count, file_name=None):
             relevant_probes[asnv4] = [probe]
         else:
             (relevant_probes[asnv4]).append(probe)
-
 
     asnv4s = relevant_probes.keys()
     random.shuffle(asnv4s)
