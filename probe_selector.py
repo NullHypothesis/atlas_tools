@@ -29,7 +29,8 @@ log = logger.get_logger()
 
 def parse_cmd_args():
 
-    parser = argparse.ArgumentParser(description="Select RIPE Atlas probes.")
+    parser = argparse.ArgumentParser(description="Select and return RIPE "
+                                     "Atlas probe IDs in unique ASNs.")
 
     parser.add_argument("-f", "--file", type=str, default=None,
                         help="Use the given file instead of downloading it.")
