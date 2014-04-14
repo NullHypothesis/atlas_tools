@@ -15,26 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with atlas tools.  If not, see <http://www.gnu.org/licenses/>.
 
-import pprint
+import base64
 
-class MetaParser(object):
+import OpenSSL
 
-    def load(self):
-        """
-        Parses and returns measurement-specific data.
-        """
-        pass
+import meta_parser
+import logger
 
-    def dump(self, raw_measurement):
+log = logger.get_logger()
 
-        print "---\n"
+class Parser(meta_parser.MetaParser):
 
-        # Print general measurement information.
-        print pprint.pprint(raw_measurement)
-
-        # Print specific (DNS, X.509, ...) measurement information.
-        print self.load(raw_measurement)
-        print
-
-    def parse(self, raw_measurement):
-        return self.load(raw_measurement)
+    def load(self, raw_measurement):
+        
+        if raw_measurement.has_key("cert"):
+            return [OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert) for cert in raw_measurement['cert']]
+        
+        elif raw_measurement.has_key("error"):
+            log.error("Found error in measurement: %s" % raw_measurement['error'])
+        
+        return None
