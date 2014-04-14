@@ -15,26 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with atlas tools.  If not, see <http://www.gnu.org/licenses/>.
 
-import pprint
+import base64
+import meta_parser
+import logger
 
-class MetaParser(object):
+log = logger.get_logger()
 
-    def load(self):
-        """
-        Parses and returns measurement-specific data.
-        """
-        pass
+class Parser(meta_parser.MetaParser):
 
-    def dump(self, raw_measurement):
+    def load(self, raw_measurement):
+        
+        temporary_route_list = {}
+        for measurement_record in raw_measurement['result']:
+            measurement_record['hop'] = int(measurement_record['hop'])
+            temporary_route_list[measurement_record['hop']] = [ (h['from'] if 'from' in h else None, h['rtt'] if 'rtt' in h else None) for h in measurement_record['result']]
 
-        print "---\n"
-
-        # Print general measurement information.
-        print pprint.pprint(raw_measurement)
-
-        # Print specific (DNS, X.509, ...) measurement information.
-        print self.load(raw_measurement)
-        print
-
-    def parse(self, raw_measurement):
-        return self.load(raw_measurement)
+        return temporary_route_list
