@@ -58,7 +58,9 @@ def extract_asn(url):
     else:
         return None
 
-def main(area, count, file_name=None):
+def select(area, count, file_name=None):
+
+    probe_ids = []
 
     url = "https://atlas.ripe.net/contrib/active_probes.json"
 
@@ -113,13 +115,13 @@ def main(area, count, file_name=None):
         random.shuffle(probes)
 
         probe_info = probes[0][3]
-        print probe_info[probe_info.index(u"Probe ID") + 1]
+        probe_ids.append(probe_info[probe_info.index(u"Probe ID") + 1])
 
         count -= 1
         if count == 0:
             break
 
-    return 0
+    return probe_ids
 
 if __name__ == "__main__":
 
@@ -127,4 +129,4 @@ if __name__ == "__main__":
 
     log.debug("Selecting %d probes in %s." % (args.count, args.area))
 
-    exit(main(args.area, args.count, args.file))
+    exit(select(args.area, args.count, args.file))
