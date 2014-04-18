@@ -32,7 +32,7 @@ def send_query(json_blurb, api_key):
 
     url = "https://atlas.ripe.net/api/v1/measurement/?key=" + api_key
 
-    log.debug("Sending %d bytes of JSON blurb to %s." % len(json_blurb), url)
+    log.debug("Sending %d bytes of JSON blurb to %s." % (len(json_blurb), url))
 
     request = urllib2.Request(url, json_blurb)
     request.add_header("Content-Type", "application/json")
