@@ -53,9 +53,11 @@ Alternatives
 
 Don't like `atlas_tools`?  Luckily, there are a bunch of great alternatives
 such as [`RIPE Atlas Sagan`](https://github.com/RIPE-NCC/ripe.atlas.sagan) for
-parsing results and
+parsing results,
 [`ripe-atlas-community-contrib`](https://github.com/RIPE-Atlas-Community/ripe-atlas-community-contrib)
-which provides various small tools.
+which provides various small tools, and [`RIPE Atlas Command Line
+Manager`](https://github.com/astrikos/ripe-atlas-cmdline) which provides a
+command line manager.
 
 Contact
 =======
