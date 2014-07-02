@@ -23,7 +23,7 @@ import json
 import pprint
 
 import rest_api
-import query_issuer
+import rest_api.query_issuer
 import probe_selector
 
 import logger
@@ -123,7 +123,8 @@ def parse_cmd_args():
 
     # Let our subparsers (ping, dns, ...) add command line arguments.
 
-    module_names = [name for _, name, _ in pkgutil.iter_modules(["rest_api"])]
+    module_names = [name for _, name, _ in pkgutil.iter_modules(["rest_api"])
+                    if "api" in name]
     for module_name in module_names:
         module = __import__("rest_api.%s" % module_name,
                             fromlist=[module_name])
@@ -148,7 +149,7 @@ def parse_cmd_args():
 
     log.debug("Creating JSON blurb from argument list.")
     json_blurb = json.dumps(json_dict)
-    query_issuer.send_query(json_blurb, args.api_key)
+    rest_api.query_issuer.send_query(json_blurb, args.api_key)
 
     return 0
 
