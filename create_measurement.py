@@ -84,7 +84,7 @@ def parse_cmd_args():
     parser.add_argument("-o", "--one-off",
                         dest = "definitions.is_oneoff",
                         action = "store_false",
-                        help = "Create a one-off measurement (default=true).")
+                        help = "Toggle one-off measurement (default=true).")
 
     parser.add_argument("-v", "--visualize",
                         dest = "definitions.can_visualise",
