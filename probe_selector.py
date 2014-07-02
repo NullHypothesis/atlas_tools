@@ -29,14 +29,16 @@ log = logger.get_logger()
 
 def parse_cmd_args():
 
-    parser = argparse.ArgumentParser(description="Select and return RIPE "
-                                     "Atlas probe IDs in unique ASNs.")
+    parser = argparse.ArgumentParser(description="Randomly select and return "
+                                     "RIPE Atlas probe IDs in unique ASNs.")
 
     parser.add_argument("-f", "--file", type=str, default=None,
                         help="Use the given file instead of downloading it.")
 
     parser.add_argument("area", type=str, default=None,
-                        help="Select probes in the given area.")
+                        help="Select probes in the given area.  This should " \
+                             "be a 2-letter country code or \"WW\" for world" \
+                             "wide.")
 
     parser.add_argument("count", type=int, default=None,
                         help="How many probes to select.")
