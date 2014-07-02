@@ -131,4 +131,8 @@ if __name__ == "__main__":
 
     log.debug("Selecting %d probes in %s." % (args.count, args.area))
 
-    exit(select(args.area, args.count, args.file))
+    probe_ids = select(args.area, args.count, args.file)
+    for probe_id in probe_ids:
+        print probe_id
+
+    exit(0)
